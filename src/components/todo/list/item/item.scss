@@ -2,23 +2,51 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // margin-bottom: 12px;
+    position: relative;
     border-bottom: 1px dashed #CCC;
     padding: 12px 8px;
     label {
         display: inline-flex;
+        &:hover {
+            color: #3BA910;
+        }
     }
 
-    .button-remove {
+    .button {
         display: inline-flex;
         justify-content: flex-end;
         width: 50px;
         cursor: pointer;
-        span {
-            color: red;
-            border: 1px solid red;
+        &-remove {
+            color: white;
+            border: 1px solid #f14a4a;
             padding: 0px 6px;
             font-size: 1em;
+            background: #f14a4a;
+            border-radius: 3px;
+            margin-left: 5px;
+            &:hover {
+                background: white;
+                color: #f14a4a;
+            }
+        }
+        &-edit {
+            color: white;
+            border: 1px solid #CBB642;
+            padding: 0px 6px;
+            font-size: 1em;
+            background: #CBB642;
+            border-radius: 3px;
+            &:hover {
+                background: white;
+                color: #CBB642;
+            }
+            &-name {
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
         }
     }
 }

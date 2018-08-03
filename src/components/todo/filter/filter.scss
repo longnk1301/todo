@@ -3,7 +3,11 @@
     justify-content: space-between;
     flex-direction: row;
     margin-bottom: 12px;
+        font-size: 2vw;
     &-item {
         width: 200px;
+        &:hover {
+        	color: #3BA910;
+        }
     }
 }

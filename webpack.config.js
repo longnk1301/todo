@@ -29,7 +29,8 @@ module.exports = {
     plugins: [HtmlWebpackPluginConfig],
     resolve: {
         alias: {
-            components: path.join(__dirname, 'src/components/')
+            components: path.join(__dirname, 'src/components/'),
+            src: path.join(__dirname, 'src/') //src/api
         },
         modules: [
             path.resolve(__dirname, 'node_modules')
