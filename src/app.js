@@ -1,6 +1,5 @@
 import React from 'react';
 import TodoList from 'components/todo';
-
 import './app.scss';
 
 export default class App extends React.Component {

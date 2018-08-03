@@ -4,6 +4,7 @@ import _map from 'lodash/map';
 import List from './list';
 import Filter from './filter';
 import Create from './create';
+import Search from './search';
 import './todos.scss';
 
 class Index extends React.Component {
@@ -19,13 +20,25 @@ class Index extends React.Component {
                 {id: 6, name: 'Test todo 6', completed: true},
                 {id: 7, name: 'Test todo 7', completed: false}
             ],
-            filter: 'SHOW_ALL'
+            filter: 'SHOW_ALL',
+            keyword: ''
         }
 
         this.onChangeFilter = this.onChangeFilter.bind(this);
         this.toggleTodo = this.toggleTodo.bind(this);
         this.handleAddTodo = this.handleAddTodo.bind(this);
         this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
+        this.handleEditTodo = this.handleEditTodo.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+    }
+
+    componentWillMount() {
+        if(localStorage && localStorage.getItem('todos')) {
+            var todos = JSON.parse(localStorage.getItem('todos'));
+            this.setState({
+                todos: todos
+            });
+        }
     }
 
     onChangeFilter(filter) {
@@ -42,13 +55,23 @@ class Index extends React.Component {
             completed: false
         });
 
-        this.setState({todos});
+        this.setState({
+            todos: todos
+        });
+
+        localStorage.setItem('todos', JSON.stringify(todos));
     }
 
     handleRemoveTodo(id) {
         const todos = this.state.todos;
         let filter = todos.filter(t => t.id !== id);
         this.setState({todos: filter});
+    }
+
+    handleEditTodo(id) {
+        const { todos } = this.state;
+        let filter = todos.filter(t => t.id === id);
+        console.log(filter);
     }
 
     toggleTodo(id) {
@@ -63,16 +86,27 @@ class Index extends React.Component {
     }
 
     filterTodo() {
-        const {todos, filter} = this.state;
+        const {todos, filter, keyword} = this.state;
 
         switch (filter) {
             case 'SHOW_ALL':
-                return todos
+                return todos;
             case 'SHOW_COMPLETED':
-                return todos.filter(t => t.completed)
+                return todos.filter(t => t.completed);
             case 'SHOW_ACTIVE':
-                return todos.filter(t => !t.completed)
+                return todos.filter(t => !t.completed);
+            case 'SHOW_SEARCH':
+                return todos.filter((todo) => {
+                    return todo.name.toLowerCase().indexOf(keyword) !== -1;
+                });
         }
+    }
+
+    onSearch(keyword, typeSearch) {
+        this.setState({
+            filter: typeSearch,
+            keyword: keyword
+        })
     }
 
     countUncompletedTodo() {
@@ -84,10 +118,11 @@ class Index extends React.Component {
         return (
             <div className="todos">
                 <div className="todos--header">
-                    You've got {this.countUncompletedTodo()} things to do
+                    You've got {this.countUncompletedTodo()} things to do                    
                 </div>
                 <Filter onClick={this.onChangeFilter} />
-                <List todos={this.filterTodo()} onTodoClick={this.toggleTodo} onRemoveTodo={this.handleRemoveTodo} />
+                <Search onSearch={ this.onSearch }/>
+                <List todos={this.filterTodo()} onTodoClick={this.toggleTodo} onRemoveTodo={this.handleRemoveTodo} onEditTodo={this.handleEditTodo} />
                 <Create onSaveTodo={this.handleAddTodo} />
             </div>
         )

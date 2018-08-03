@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import Todo from './item';
 import './list.scss';
 
-const TodoList = ({todos, onTodoClick, onRemoveTodo}) => (
+const TodoList = ({todos, onTodoClick, onRemoveTodo, onEditTodo}) => (
     <div className="todo__list">
     {todos.map(todo =>
-        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onRemove={() => onRemoveTodo(todo.id)} />
+        <Todo 
+            key={todo.id} {...todo} 
+            onClick={() => onTodoClick(todo.id)} 
+            onEdit={() => onEditTodo(todo.id)}
+            onRemove={() => onRemoveTodo(todo.id)} />
     )}
     </div>
 )

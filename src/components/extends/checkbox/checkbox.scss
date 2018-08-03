@@ -1,6 +1,6 @@
 .control {
     input:checked ~ .control__indicator {
-        background: #2aa1c0;
+        background: #3BA910;
         &:after {
             display: block;
         }
@@ -8,7 +8,7 @@
 
     &:hover input:not([disabled]):checked ~ .control__indicator,
     input:checked:focus ~ .control__indicator {
-        background: #0e647d;
+        background: #3BA910;
     }
 
     &--checkbox {

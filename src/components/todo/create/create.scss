@@ -1,24 +1,50 @@
 .create-todo {
-    padding: 12px;
+    margin: 20px auto;
     .new-button {
         span {
-            padding: 0 4px;
+            padding: 5px;
             font-size: 1em;
-            color: green;
-            border: 1px solid green;
+            font-weight: bold;
+            color: white;
+            border: 1px solid #00BFFF;
+            background: #00BFFF;
+            border-radius: 5px;
             cursor: pointer;
             margin-right: 6px;
+            &:hover {
+                background: white;
+                color: #00BFFF;
+            }
         }
     }
 
     .button-group {
-        margin-top: 12px;
+        margin-top: 20px;
         span {
-            padding: 4px 16px;
+            padding: 10px;
             text-decoration: uppercase;
             cursor: pointer;
             margin-right: 12px;
-            border: 1px solid #CCC;
+        }
+        &-save {
+            background: #FFB900;
+            border-radius: 10%;
+            color: white;
+            border: 1px solid #FFB900;
+            &:hover {
+                color: #FFB900;
+                background: white;
+            }
+        }
+        &-cancel {
+            background: #FF4400;
+            border-radius: 10%;
+            color: white;
+            border: 1px solid #FF4400;
+            &:hover {
+                color: #FF4400;
+                background: white;
+            }
         }
     }
 }

@@ -46,8 +46,8 @@ class CreateTodo extends React.Component {
                         message={this.state.message}
                     />
                     <div className="button-group">
-                        <span onClick={this.onSaveTodo}>Save</span>
-                        <span onClick={this.onCancel}>Cancel</span>
+                        <span className="button-group-save" onClick={this.onSaveTodo}>Save</span>
+                        <span className="button-group-cancel" onClick={this.onCancel}>Cancel</span>
                     </div>
                 </div>
             )
@@ -56,8 +56,7 @@ class CreateTodo extends React.Component {
         return (
             <div className="create-todo">
                 <div className="new-button">
-                    <span onClick={() => {this.setState({isCreating: true})}}>+</span>
-                    New thing to do
+                    <span onClick={() => {this.setState({isCreating: true})}}>+ Add</span>
                 </div>
             </div>
         )
